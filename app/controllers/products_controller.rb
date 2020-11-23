@@ -20,29 +20,9 @@ class ProductsController < ApplicationController
 
   def show
     
-    @reviews = @product.reviews
+    @reviews = @product.reviews_with_id
     @review = @reviews.new
-  end
-
-  def new
-    @product = Product.new
-    @categories = Category.all
-  end
-
-  def create
-    @product = Product.new(product_params)
-    @product.save
-    redirect_to product_url @product
-  end
-
-  def edit
-    
-  end
-
-  def update
-    
-    @product.update(product_params)
-    redirect_to product_url @product
+    @star_repeat_select = Review.star_repeat_select
   end
 
   def destroy
